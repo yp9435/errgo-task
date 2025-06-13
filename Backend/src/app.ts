@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { WebSocketServer, WebSocket } from 'ws';
 import http from 'http';
 
-// found 2 TODOS here, completed method for project creation and retrieval, used zod for validation (BONUS)
+// found 2 TODOS here, completed method for project creation and retrieval, used zod for validation (BONUS), websocket for chat functionality (BONUS)
 
 const app = express();
 const PORT = 3000;
@@ -83,18 +83,14 @@ app.post('/projects', (req: Request, res: Response): void => {
 });
 
 app.post('/chat', (req: Request, res: Response) => {
-  /**
-   * Example endpoint for posting a chat message (if needed)
-   * This is just a placeholder and can be adjusted as per requirements.
-   */
 
   const { message } = req.body;
   if (!message) {
-    res.status(400).json({ message: 'Message is required' });
+    res.status(400).json({ message: 'Enter a Message.' });
     return;
   }
   chatHistory.push(message);
-  res.status(201).json({ message: 'Message added' });
+  res.status(201).json({ message: 'Sent!' });
 });
 
 app.get('/projects', (req: Request, res: Response) => {
