@@ -1,6 +1,10 @@
 import React, { useState, type FormEvent } from 'react';
 import { Eye, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { createProject } from '../controller/ProjectController'; // importsss
+
+// found 1 TODO and a Bonus task, made onsubmit async and called createprojects, added the validation, success and error alerts and redirected the user!
+
 export const ProjectPage: React.FC = () => {
   const [projectName, setProjectName] = useState<string>("");
   const [projectDescription, setProjectDescription] = useState<string>("");
@@ -11,7 +15,8 @@ export const ProjectPage: React.FC = () => {
    * 
    * @param event The form event
    */
-  const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
     /**
      * TODO:
      * Complete the method by calling the `createProject() method in ProjectController.ts`
@@ -19,10 +24,21 @@ export const ProjectPage: React.FC = () => {
      * 
      * BONUS - Add simple validation to the form inputs to not allow empty string and display an error alert
      */
-    // alert("Successfully created project");
-    // navigate('/project-details');
 
-    event.preventDefault();
+    // validationnnn
+    if (!projectName || !projectDescription) {
+      alert("Please fill in all fields!!");
+      return;
+    }
+
+    try {
+      await createProject({ name: projectName, description: projectDescription });
+      alert("Created the Projectt!"); // successss 
+      navigate('/project-details'); // redirectttt
+    } catch (error) {
+      console.error(error); // errorrrrrr
+      alert("There was an error. Please try again!");
+    }
   }
 
   return (

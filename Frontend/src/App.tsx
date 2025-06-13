@@ -12,7 +12,7 @@ export default function App() {
         /**
          * TODO: Complete method to allow sidebar visibility state to be toggled
          */
-        setSidebarVisible((prev) => !prev);
+        setSidebarVisible((prev) => !prev); 
     };
 
     return (
