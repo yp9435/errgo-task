@@ -107,10 +107,7 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": [
-    "server.ts",
-    "env/.env.prod",
-    "app/**/*",
-    "config/**/*"
+    "src/**/*"
   ],
   "exclude": [
     "dist"
