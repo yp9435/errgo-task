@@ -2,6 +2,8 @@ import React from 'react';
 import { Search, Bell, MessageCircle, Menu, ArrowLeft } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
+// ok so i found one TODO in this file, added onclick for the toggle button
+
 interface TopNavbarProps {
   toggleSidebar?: () => void;
 }
@@ -28,6 +30,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
         <button
         // TODO: Fix this button button by adding the appropriate onClick behavior to toggle the sidebar
           className="p-10 rounded transition-colors"
+          onClick={toggleSidebar} 
         >
           <Menu className="h-5 w-5 text-gray-700" />
         </button>
